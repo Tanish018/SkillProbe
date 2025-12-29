@@ -1,18 +1,26 @@
-import express from "express"
-import { ENV } from "./lib/env.js"
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+import { ENV } from "./lib/env.js";
 
-const app = express()
+const app = express();
+const PORT = ENV.PORT;
 
-const PORT = ENV.PORT
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const frontendPath = path.resolve(__dirname, "../../frontend/dist");
 
-app.get("/", (req,res) => {
-  res.status(200).send("SkillProbe Backend is running")
-})
+app.get("/health", (req, res) => {
+  res.status(200).send("SkillProbe Backend is up and running");
+});
 
-app.get("/health", (req,res) => {
-  res.status(200).send("SkillProbe Backend is up and running")
-})
+if (ENV.NODE_ENV === "production") {
+  app.use(express.static(frontendPath));
+  app.get("/{*any}", (req, res) => {
+    res.sendFile(path.resolve(frontendPath, "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-})
+  console.log(`Server is running on port ${PORT}`);
+});
