@@ -4,13 +4,23 @@ import { fileURLToPath } from "url";
 import { ENV } from "./lib/env.js";
 import { connect } from "http2";
 import { connectDB } from "./lib/db.js";
+import cors from "cors";
+import { serve } from "inngest/express";
+import { inngest, functions } from "./lib/inngest.js";
 
 const app = express();
 const PORT = ENV.PORT;
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+// credentials: true => meaning?? => server allows browser to send cookies along with requests
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }));
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const frontendPath = path.resolve(__dirname, "../../frontend/dist");
+
+app.use("/api/inngest", serve({ client: inngest, functions }));
 
 app.get("/health", (req, res) => {
   res.status(200).send("SkillProbe Backend is up and running");
@@ -18,7 +28,7 @@ app.get("/health", (req, res) => {
 
 if (ENV.NODE_ENV === "production") {
   app.use(express.static(frontendPath));
-  app.get("/{*any}", (req, res) => {
+  app.get(/.*/, (req, res) => {
     res.sendFile(path.resolve(frontendPath, "index.html"));
   });
 }
