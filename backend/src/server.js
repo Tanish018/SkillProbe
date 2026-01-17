@@ -7,9 +7,13 @@ import { connectDB } from "./lib/db.js";
 import cors from "cors";
 import { serve } from "inngest/express";
 import { inngest, functions } from "./lib/inngest.js";
+import { clerkMiddleware } from '@clerk/express'
+import { ProtectRoute } from "./middleware/protectRoute.js";
+import chatRoutes from "./routes/chatRoutes.js";
 
 const app = express();
 const PORT = ENV.PORT;
+app.use(clerkMiddleware()); // adds auth field to req object: req.auth()
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -21,6 +25,7 @@ const __dirname = path.dirname(__filename);
 const frontendPath = path.resolve(__dirname, "../../frontend/dist");
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
+app.use("/api/chat", chatRoutes);
 
 app.get("/health", (req, res) => {
   res.status(200).send("SkillProbe Backend is up and running");
