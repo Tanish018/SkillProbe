@@ -39,4 +39,6 @@ const deleteUserFromDB = inngest.createFunction(
   }
 )
 
+// send a welcome email function could go here
+
 export const functions = [syncUser, deleteUserFromDB];
