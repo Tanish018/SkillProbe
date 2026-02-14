@@ -27,7 +27,7 @@ const frontendPath = path.resolve(__dirname, "../../frontend/dist");
 
 app.use("/api/inngest", serve({ client: inngest, functions }));
 app.use("/api/chat", chatRoutes);
-app.use("/api/session", sessionRoutes);
+app.use("/api/sessions", sessionRoutes);
 
 app.get("/health", (req, res) => {
   res.status(200).send("SkillProbe Backend is up and running");
