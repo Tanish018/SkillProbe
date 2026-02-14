@@ -1,4 +1,5 @@
 import Session from "../models/Session.js"
+import { streamClient, chatClient } from "../lib/stream.js"
 
 export async function createSession(req, res) {
   try {
@@ -14,7 +15,7 @@ export async function createSession(req, res) {
 
     const session = await Session.create({
       problem,
-      difficulty,
+      difficulty: difficulty.toLowerCase(),
       host: userId,
       callId
     })
@@ -48,6 +49,7 @@ export async function getActiveSessions(_, res) {
   try {
     const sessions = await Session.find({ status: "active" })
       .populate("host", "name profileImage email clerkId")
+      .populate("participant", "name profileImage email clerkId")
       .sort({ createdAt: -1 })
       .limit(20);
 
@@ -67,7 +69,7 @@ export async function getMyRecentSessions(req, res) {
       $or: [{ host: userid }, { participant: userid }]
     }).sort({ createdAt: -1 }).limit(20)
 
-    res.statues(200).json({ sessions })
+    res.status(200).json({ sessions })
   } catch (error) {
     console.error("Error fetching my recent sessions:", error)
     return res.status(500).json({ message: "Internal Server Error" })

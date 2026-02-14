@@ -11,7 +11,9 @@ function App() {
   const { isSignedIn, isLoaded } = useUser();
 
   if (!isLoaded) {
-    return <div className="loading loading-spinner text-primary loading-lg mx-auto my-20"></div>
+    return <div className="flex items-center justify-center h-screen bg-base-300">
+      <div className="loading loading-spinner text-primary loading-lg"></div>
+    </div>
   }
 
   return (
@@ -26,7 +28,7 @@ function App() {
       <Toaster
         position="top-right"
         reverseOrder={true}
-        toastOptions={{duration: 3000}}
+        toastOptions={{ duration: 3000 }}
       />
     </>
   )
