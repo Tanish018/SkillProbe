@@ -4,7 +4,7 @@ import { streamClient, chatClient } from "../lib/stream.js"
 export async function createSession(req, res) {
   try {
     const { problem, difficulty } = req.body;
-    const userId = req.user._id
+    const userId = req.user._id;
     const clerkId = req.user.clerkId
     if (!problem || !difficulty) {
       return res.status(400).json({ message: "Problem and Difficulty are required." })
