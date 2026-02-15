@@ -9,7 +9,7 @@ router.get("/active", ProtectRoute, getActiveSessions);
 router.get("/my-recent", ProtectRoute, getMyRecentSessions);
 
 router.get("/:id", ProtectRoute, getSessionById);
-router.get("/:id/join", ProtectRoute, joinSession);
-router.get("/:id/end", ProtectRoute, endSession);
+router.post("/:id/join", ProtectRoute, joinSession);
+router.post("/:id/end", ProtectRoute, endSession);
 
 export default router;

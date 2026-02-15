@@ -119,7 +119,7 @@ const HomePage = () => {
 
         {/* Grid */}
         <div className='grid md:grid-cols-3 gap-8'>
-          <div className='card bg-base-100 shadow-xl'>
+          <div className='card bg-base-100 shadow-xl hover:scale-105 transition-all duration-150 cursor-pointer'>
             <div className='card-body items-center text-center'>
               <div className='size-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4'>
                 <VideoIcon className='size-8 text-primary' />
@@ -128,7 +128,7 @@ const HomePage = () => {
               <p className='text-base-content/70'>Crystal clear video calls for seamless collaboration during interviews</p>
             </div>
           </div>
-          <div className='card bg-base-100 shadow-xl'>
+          <div className='card bg-base-100 shadow-xl hover:scale-105 transition-all duration-150 cursor-pointer'>
             <div className='card-body items-center text-center'>
               <div className='size-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4'>
                 <Code2Icon className='size-8 text-primary' />
@@ -137,7 +137,7 @@ const HomePage = () => {
               <p className='text-base-content/70'>Real-time collaborative coding with syntax highlighting and multiple language support</p>
             </div>
           </div>
-          <div className='card bg-base-100 shadow-xl'>
+          <div className='card bg-base-100 shadow-xl hover:scale-105 transition-all duration-150 cursor-pointer'>
             <div className='card-body items-center text-center'>
               <div className='size-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4'>
                 <UsersIcon className='size-8 text-primary' />
