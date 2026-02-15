@@ -25,7 +25,7 @@ const StatsCards = ({ activeSessionsCount, recentSessionsCount }) => {
               <TrophyIcon className="w-7 h-7 text-secondary" />
             </div>
           </div>
-          <div className="text-4xl font-black mb-1">{recentSessionsCount}</div>
+          <div className="text-4xl font-black mb-1">{recentSessionsCount + activeSessionsCount}</div>
           <div className="text-sm opacity-60">Total Sessions</div>
         </div>
       </div>

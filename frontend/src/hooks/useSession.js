@@ -6,7 +6,7 @@ export const useCreateSession = () => {
   const result = useMutation({
     mutationKey: ["createSession"],
     mutationFn: sessionAPI.createSession,
-    onSuccess: () => toast.success("Session Created Successfully!"), 
+    onSuccess: () => toast.success("Session Created Successfully!"),
     onError: (error) => toast.error(error.response?.data?.message || "Failed to create Session")
   })
 
@@ -42,20 +42,20 @@ export const useSessionById = (id) => {
   return result;
 }
 
-export const useJoinSession = (id) => {
+export const useJoinSession = () => {
   return useMutation({
     mutationKey: ["joinSession"],
-    mutationFn: () => sessionAPI.joinSession(id),
-    onSuccess: () => toast.success("Joined Session Successfully!"), 
+    mutationFn: sessionAPI.joinSession,
+    onSuccess: () => toast.success("Joined Session Successfully!"),
     onError: (error) => toast.error(error.response?.data?.message || "Failed to join Session")
   })
 }
 
-export const useEndSession = (id) => {
+export const useEndSession = () => {
   return useMutation({
     mutationKey: ["endSession"],
-    mutationFn: () => sessionAPI.endSession(id),
-    onSuccess: () => toast.success("Session Ended Successfully!"), 
+    mutationFn: sessionAPI.endSession,
+    onSuccess: () => toast.success("Session Ended Successfully!"),
     onError: (error) => toast.error(error.response?.data?.message || "Failed to end Session")
   })
 }
