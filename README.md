@@ -236,7 +236,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License 📄
 
-This project is open source and available under the ISC License.
+This project is open source.
 
 ## Support 💬
 
@@ -244,4 +244,4 @@ For issues, questions, or suggestions, please open a GitHub issue or contact the
 
 ---
 
-**Made with ❤️ by the SkillProbe team**
+**Made with ❤️ by Tanish Rathore**
